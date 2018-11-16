@@ -5,18 +5,18 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { withStyles } from "@material-ui/core/styles";
 import Weather from "./Weather";
 
-const styles = {
+const styles = theme => ({
   grow: {
-    flexGrow: 1
+      flexGrow: 1
   }
-};
+});
 
 const Header = props => {
   const { classes } = props;
 
   const name = "Thera's";
   return (
-    <AppBar position="static">
+    <AppBar position="fixed" className={props.className}>
       <Toolbar>
         <Typography variant="h6" color="inherit" className={classes.grow}>
           {name} EOG React Visualization Assessment

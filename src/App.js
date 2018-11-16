@@ -5,9 +5,13 @@ import { ToastContainer } from "react-toastify";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import "react-toastify/dist/ReactToastify.css";
-import Header from "./components/Header";
 import Wrapper from "./components/Wrapper";
-import NowWhat from "./components/NowWhat";
+import InfoCard from "./components/InfoCard"
+import Sidebar from "./components/Sidebar"
+import Map from "./components/Map"
+import Chart from "./components/Chart"
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 
 const store = createStore();
 const theme = createMuiTheme({
@@ -27,15 +31,24 @@ const theme = createMuiTheme({
   }
 });
 
+const Home = () => <h2>Hi there, this site visualizes drone data!</h2>;
+
 const App = props => (
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
     <Provider store={store}>
-      <Wrapper>
-        <Header />
-        <NowWhat />
-        <ToastContainer />
-      </Wrapper>
+        <Router>
+          <Wrapper>
+            <Sidebar />
+                <div>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/info" component={InfoCard} />
+                    <Route path="/map" component={Map} />
+                    <Route path="/chart" component={Chart} />
+                </div>
+            <ToastContainer />
+          </Wrapper>
+        </Router>
     </Provider>
   </MuiThemeProvider>
 );
